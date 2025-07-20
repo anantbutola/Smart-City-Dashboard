@@ -7,7 +7,7 @@ const PORT = 3000;
 
 app.use(cors());
 
-const API_KEY = '8f125439-1c27-4de9-9a7b-34e2a30e3f02';
+const API_KEY = ''; //AIRVISUAL API HERE
 
 app.get('/api/pollution', async (req, res) => {
     const { lat, lon } = req.query;
