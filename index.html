@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Dashboard</title>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Add Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+</head>
+
+
+
+<body>
+    <div class="dashboard">
+        <!-- Header Section -->
+        <header>
+            <h1>Smart City Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="#traffic"><i class="fas fa-car-side"></i> Traffic</a></li>
+                    <li><a href="#energy"><i class="fas fa-bolt"></i> Energy</a></li>
+                    <li><a href="#pollution"><i class="fas fa-smog"></i> Pollution</a></li>
+                    <li><a href="#waste"><i class="fas fa-recycle"></i> Waste</a></li>
+                    <li><a href="#wifi"><i class="fas fa-wifi"></i> Wi-Fi</a></li>
+                    <li><a href="#crime"><i class="fas fa-shield-alt"></i> Crime</a></li>
+                    <li><a href="#transport"><i class="fas fa-bus"></i> Transport</a></li>
+                    <li><a href="#weather"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                    <li><a href="#disasters"><i class="fas fa-exclamation-triangle"></i> Disasters</a></li>
+
+                </ul>
+            </nav>
+            <button id="auth-toggle-btn">Login</button>
+            <!-- Search Bar for City/State -->
+            <!-- Search Bar -->
+            <!-- <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Enter city or state">
+                <button id="search-btn"><i class="fas fa-search"></i> Search</button>
+            </div> -->
+            <div class="background-wrapper">
+                <div class="dashboard">
+                    <!-- Your content here -->
+                </div>
+            </div>
+            
+
+        </header>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="search-bar" placeholder="Search state or city">
+            <button onclick="handleSearch()"><i class="fas fa-search"></i></button>
+        </div>
+        
+
+        <!-- Main Content -->
+        <main>
+            <section id="traffic" class="dashboard-section" style="position: relative;">
+                <!-- Three-dot menu button -->
+                <button id="trafficMenuBtn" class="ellipsis-btn" title="Show full traffic data" style="position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: #555; z-index: 2;"><i class="fas fa-ellipsis-v"></i></button>
+                <div class="toggle-buttons" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="showGraphBtn" class="btn btn-primary btn-sm">Graph</button>
+                    <button id="showMapBtn" class="btn btn-outline-primary btn-sm">Map</button>
+                </div>
+                <div id="traffic-graph">
+                    <h2><i class="fas fa-car-side"></i> Traffic Data</h2>
+                    <canvas id="trafficChart"></canvas>
+                </div>
+                <div id="traffic-map" style="display: none; margin-top: 30px;">
+                    <h3>Traffic Map</h3>
+                    <div id="leaflet-map" style="width: 100%; height: 240px; border-radius: 10px;"></div>
+                </div>
+            </section>
+            
+
+            <section id="energy" class="dashboard-section" style="position: relative;">
+                <!-- Three-dot menu button -->
+                <button id="energyMenuBtn" class="ellipsis-btn" title="Show full energy data" style="position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: #555; z-index: 2;"><i class="fas fa-ellipsis-v"></i></button>
+                <h2><i class="fas fa-bolt"></i> Energy Consumption</h2>
+                <div class="toggle-buttons" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="showEnergyLineBtn" class="btn btn-primary btn-sm">Line</button>
+                    <button id="showEnergyPieBtn" class="btn btn-outline-primary btn-sm">Pie</button>
+                </div>
+                <div class="energy-stats" style="display: flex; gap: 30px; margin-bottom: 18px; flex-wrap: wrap;">
+                    <div><b>Current:</b> <span id="energy-consumption">Loading...</span> kWh</div>
+                    <div><b>Peak:</b> <span id="energy-peak">--</span> kWh</div>
+                    <div><b>Average:</b> <span id="energy-avg">--</span> kWh</div>
+                    <div><b>Renewable:</b> <span id="energy-renewable">--</span>%</div>
+                </div>
+                <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;">
+                    <canvas id="energyLineChart" width="320" height="180"></canvas>
+                    <canvas id="energyPieChart" width="180" height="180" style="display: none;"></canvas>
+                </div>
+            </section>
+            
+            <section id="pollution" class="dashboard-section" style="position: relative;">
+                <!-- Three-dot menu button -->
+                <button id="pollutionMenuBtn" class="ellipsis-btn" title="Show full pollution info" style="position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: #555; z-index: 2;"><i class="fas fa-ellipsis-v"></i></button>
+                <h2><i class="fas fa-smog"></i> Pollution Levels</h2>
+                <p>PM2.5:<span id="pm25-badge" class="aqi-badge">--</span>µg/m³</p>
+                <p>CO: <span id="co2">Loading...</span> ppm</p>
+                <p>NO2: <span id="no2">Loading...</span> ppb</p>
+                <p>O3: <span id="o3">Loading...</span> ppb</p>
+                <div class="aqi-legend" style="margin-top: 12px;">
+                    <b>PM2.5 Color Coding:</b>
+                    <div style="display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap;">
+                        <span class="aqi-badge aqi-good">0-50 Good</span>
+                        <span class="aqi-badge aqi-moderate">51-100 Moderate</span>
+                        <span class="aqi-badge aqi-unhealthy">101-150 Unhealthy</span>
+                        <span class="aqi-badge aqi-very-unhealthy">151+ Very Unhealthy</span>
+                    </div>
+                </div>
+            </section>
+            
+
+            <section id="waste" class="dashboard-section">
+                <button id="wasteMenuBtn" class="ellipsis-btn" title="Show full waste info" style="position: absolute; top: 18px; right: 18px;"><i class="fas fa-ellipsis-v"></i></button>
+                <h2><i class="fas fa-recycle"></i> Waste Management</h2>
+                <div class="waste-stats">
+                    <div class="waste-main-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Daily Waste</span>
+                            <span class="stat-value"><span id="waste-collected">--</span> tons</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Recycling Rate</span>
+                            <span class="stat-value"><span id="recycling-rate">--</span>%</span>
+                        </div>
+                    </div>
+                    <div class="waste-chart">
+                        <canvas id="wasteChart"></canvas>
+                    </div>
+                    <div class="waste-composition">
+                        <h3>Waste Composition</h3>
+                        <div class="composition-chart">
+                            <canvas id="wasteCompositionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="crime" class="dashboard-section">
+                <h2><i class="fas fa-shield-alt"></i> Crime Monitoring</h2>
+                <p>Reported Incidents This Month: <span id="crime-reports">Loading...</span></p>
+                <p>Emergency Response Time: <span id="response-time">Loading...</span> minutes</p>
+            </section>
+
+            <section id="transport" class="dashboard-section">
+                <button id="transportMenuBtn" class="ellipsis-btn" title="Show full transport info" style="position: absolute; top: 18px; right: 18px;"><i class="fas fa-ellipsis-v"></i></button>
+                <h2><i class="fas fa-bus"></i> Public Transportation</h2>
+                <div class="directions-form" style="margin-bottom: 4px; display: flex; gap: 6px; align-items: center;">
+                    <input id="from-location" type="text" placeholder="From" style="width: 120px;">
+                    <input id="to-location" type="text" placeholder="To" style="width: 120px;">
+                    <button onclick="getTransitDirections()">Get Directions</button>
+                </div>
+                <div class="transport-stats" style="margin-bottom: 4px;">
+                    <div class="transport-routes" style="margin-top: 4px;">
+                        <div id="routes-list" class="routes-scroll"></div>
+                    </div>
+                </div>
+                <div id="google-transport-map" style="width: 100%; height: 300px; border-radius: 10px; margin-top: 6px;"></div>
+                <div id="transportModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Public Transportation Details</h2>
+                            <button id="closeTransportModal" class="close-btn">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="full-transport-data"></div>
+                            <div class="service-updates">
+                                <h3>Service Updates</h3>
+                                <ul id="transport-updates-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="weather-disaster-row">
+                <section id="weather" class="dashboard-section" style="position: relative;">
+                    <button id="weatherMenuBtn" class="ellipsis-btn" title="Show full weather info" style="position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: #555; z-index: 2;"><i class="fas fa-ellipsis-v"></i></button>
+                    <h2><i class="fas fa-cloud-sun"></i> Weather</h2>
+                    <div class="weather-main">
+                        <div class="weather-current">
+                            <div class="weather-icon">
+                                <img id="weather-icon" src="" alt="Weather Icon" style="width: 64px; height: 64px;">
+                            </div>
+                            <div class="weather-info">
+                                <div class="temperature">
+                                    <span id="weather-temp">--</span>°C
+                                    <span class="feels-like">(Feels like: <span id="weather-feels-like">--</span>°C)</span>
+                                </div>
+                                <div class="condition" id="weather-condition">--</div>
+                                <div class="location" id="weather-location">--</div>
+                            </div>
+                        </div>
+                        <div class="weather-details">
+                            <div class="detail-item">
+                                <i class="fas fa-tint"></i>
+                                Humidity: <span id="weather-humidity">--</span>%
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wind"></i>
+                                Wind: <span id="weather-wind">--</span> km/h
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-compress-arrows-alt"></i>
+                                Pressure: <span id="weather-pressure">--</span> hPa
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-eye"></i>
+                                Visibility: <span id="weather-visibility">--</span> km
+                            </div>
+                        </div>
+                        <div class="sun-times">
+                            <div class="sunrise">
+                                <i class="fas fa-sun"></i>
+                                Sunrise: <span id="weather-sunrise">--</span>
+                            </div>
+                            <div class="sunset">
+                                <i class="fas fa-moon"></i>
+                                Sunset: <span id="weather-sunset">--</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weather-forecast">
+                        <h3>5-Day Forecast</h3>
+                        <div id="forecast-container" class="forecast-scroll">
+                            <!-- Forecast items will be added here dynamically -->
+                        </div>
+                    </div>
+                </section>
+                <section id="disasters" class="dashboard-section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Natural Disaster Alerts</h2>
+                    <p>Current Alerts: <span id="disaster-alerts">Loading...</span></p>
+                    <p>Last Update: <span id="disaster-update">Loading...</span></p>
+                </section>
+            </div>
+
+        </main>
+    </div>
+<!-- Search Bar -->
+
+</div>
+    
+   <!-- Floating Auth Box -->
+    <div class="auth-popup hidden" id="auth-popup">
+        <div class="auth-box" id="signin-box">
+            <h2>Sign In</h2>
+            <input type="text" id="signin-username" placeholder="Username">
+            <input type="password" id="signin-password" placeholder="Password">
+            <button onclick="signIn()">Sign In</button>
+            <p>Don't have an account? <a href="#" onclick="switchAuth('signup')">Sign Up</a></p>
+        </div>
+    
+        <div class="auth-box hidden" id="signup-box">
+            <h2>Sign Up</h2>
+            <input type="text" id="signup-username" placeholder="Username">
+            <input type="email" id="signup-email" placeholder="Email">
+            <input type="date" id="signup-dob" placeholder="Date of Birth">
+            <input type="password" id="signup-password" placeholder="Password">
+            <button onclick="signUp()">Sign Up</button>
+            <p>Already have an account? <a href="#" onclick="switchAuth('signin')">Sign In</a></p>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="script.js"></script>
+    <!-- Modal for full traffic data -->
+    <div id="trafficModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeTrafficModal">&times;</span>
+        <h2>Full Traffic Data</h2>
+        <div id="full-traffic-data"></div>
+      </div>
+    </div>
+    <!-- Modal for full energy data -->
+    <div id="energyModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeEnergyModal">&times;</span>
+        <h2>Full Energy Data</h2>
+        <div id="full-energy-data"></div>
+      </div>
+    </div>
+    <!-- Modal for full pollution info -->
+    <div id="pollutionModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closePollutionModal">&times;</span>
+        <h2>Air Quality & PM2.5 Health Info</h2>
+        <div id="full-pollution-info">
+          <b>What is PM2.5?</b><br>
+          PM2.5 refers to fine particulate matter less than 2.5 micrometers in diameter. These particles can penetrate deep into the lungs and even enter the bloodstream, causing respiratory and cardiovascular issues.<br><br>
+          <b>Health Effects:</b>
+          <ul>
+            <li>Short-term exposure: Irritation of eyes, nose, throat, coughing, sneezing, shortness of breath.</li>
+            <li>Long-term exposure: Aggravated asthma, heart disease, reduced lung function, increased mortality.</li>
+          </ul>
+          <b>Advice:</b>
+          <ul>
+            <li><span class="aqi-badge aqi-good">0-50</span> Good: Air quality is satisfactory. No risk.</li>
+            <li><span class="aqi-badge aqi-moderate">51-100</span> Moderate: Acceptable, but some pollutants may be a concern for sensitive people.</li>
+            <li><span class="aqi-badge aqi-unhealthy">101-150</span> Unhealthy for Sensitive Groups: Limit prolonged outdoor exertion.</li>
+            <li><span class="aqi-badge aqi-very-unhealthy">151+</span> Very Unhealthy: Avoid outdoor activities if possible.</li>
+          </ul>
+          <div id="pollution-modal-message" style="margin-top: 18px; font-weight: 600;"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Weather Modal -->
+    <div id="weatherModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" id="closeWeatherModal">&times;</span>
+            <h2>Detailed Weather Information</h2>
+            <div id="full-weather-data"></div>
+        </div>
+    </div>
+    <!-- Add Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Waste Management Modal -->
+    <div id="wasteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeWasteModal">&times;</span>
+            <h2>Detailed Waste Management Information</h2>
+            <div id="full-waste-data"></div>
+            <div class="waste-tips">
+                <h3>Waste Management Tips</h3>
+                <ul id="waste-tips-list"></ul>
+            </div>
+        </div>
+    </div>
+    <!-- Add Google Maps JS API (replace YOUR_GOOGLE_MAPS_API_KEY) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn_GG5BgBcr6BHgtDbhbws59o4JEMB4v4&libraries=places,geometry" async defer></script>
+</body>
+
+
+
+
+
+</html>

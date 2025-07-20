@@ -1,0 +1,21 @@
+{
+  "name": "pollution-proxy",
+  "version": "1.0.0",
+  "description": "Proxy server for Smart City Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.1.5",
+    "mongoose": "^8.15.1",
+    "node-fetch": "^2.7.0"
+  }
+}
