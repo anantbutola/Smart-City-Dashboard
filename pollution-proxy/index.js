@@ -189,7 +189,7 @@ app.get('/api/disasters', async (req, res) => {
 const authRoutes = require('./auth');
 app.use('/api/auth', authRoutes);
 
-mongoose.connect('mongodb://localhost:27017/smartcity', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/smartcity');
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
