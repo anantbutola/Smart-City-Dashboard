@@ -239,5 +239,5 @@ OpenWeatherMap API key is valid.
 If you have any questions, feedback, or collaboration ideas, feel free to reach out:
 
 - 🔗 **LinkedIn**: [Anant Butola](https://www.linkedin.com/in/anant-butola-b63174370)
-- 📧 **Email**: [Anant](anantbutola8@gmail.com)
+- 📧 **Email**: anantbutola8@gmail.com
 
