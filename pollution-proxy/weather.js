@@ -2,7 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router();
 
-const OPENWEATHER_API_KEY = '59238a7d251aa7f95172ea7a4317a4d8'; // New API key
+const OPENWEATHER_API_KEY = 'Enter OpenWeather Map API'; // New API key
 
 // Validate API key on startup
 async function validateApiKey() {
