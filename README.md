@@ -130,6 +130,7 @@ This project uses MongoDB as its database. Follow these steps to set up MongoDB:
 - Update the MongoDB URI as needed for your environment.
 
 ### 4. Node.js And Express.js
+```
 **Why Use Node.js and Express.js?**
     -->Why Node.js?
 -Node.js is a JavaScript runtime that lets you run JavaScript code on the server (outside the browser).
@@ -139,6 +140,7 @@ This project uses MongoDB as its database. Follow these steps to set up MongoDB:
 -Express.js is a web framework for Node.js.
 -It simplifies building web servers and APIs by providing easy-to-use routing, middleware, and request/response handling.
 -In your project, Express.js is used to define API endpoints (like /api/auth, /api/weather, etc.) and handle HTTP requests.
+```
 --------------------------------------------------------------------------------------------------------------------------------------
 **INSTALLATION PROCESS**
 1. Install Node.js
@@ -166,7 +168,7 @@ npm init -y
   npm install mongoose bcrypt cors node-fetch express-rate-limit
 ```
 --------------------------------------------------------------------------------------------------------------------------------------
-####How to Use Node.js and Express.js in This Project 
+#### How to Use Node.js and Express.js in This Project 
 -The backend code (in pollution-proxy/) uses Node.js to run the server and Express.js to define API routes.
 -Start the server with:
 ```
@@ -175,9 +177,11 @@ npm init -y
 -The server will listen for requests (e.g., from your frontend or tools like Postman) and respond with data or perform actions (like user authentication).
 
 **Summary:**
+```
 -Node.js runs your backend JavaScript code.
 -Express.js makes it easy to build APIs and handle web requests.
 -Both are essential for your project’s backend.
+```
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ##### Now you successfully install backend server and mongodb and their dependencies....Now go to pollution proxy folder and on (index.js) in their terminal write :
@@ -195,5 +199,5 @@ Routes registered:
 - /api/auth
 OpenWeatherMap API key is valid.
 ```
-**Now everything is workng well ,now go to (index.html) go to dashboard signup or login and use the dashboard.....**
+###### **Now everything is workng well ,now go to (index.html) go to dashboard signup or login and use the dashboard.....**
 --------------------------------------------------------------------------------------------------------------------------------------
