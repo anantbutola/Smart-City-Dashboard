@@ -31,6 +31,24 @@ SmartCityDashboard/
 └── README.md
 ```
 
+## 🔍 Overview
+
+A modern, real-time Smart City Dashboard that tracks and displays key urban metrics like:
+
+-->🛣️ Traffic Flow
+
+-->🌫️ Air Pollution
+
+-->☀️ Weather Conditions
+
+-->🚮 Waste Management
+
+-->⚡ Energy Usage
+
+#### 📸 Dashboard Screenshots
+![1](C:\Users\flora\OneDrive\Pictures\Screenshots\Screenshot (158).png)
+
+
 ## 🛠️ How to Run the Project Locally
 
 ### 1. Clone the Repository
