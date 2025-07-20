@@ -45,8 +45,19 @@ A modern, real-time Smart City Dashboard that tracks and displays key urban metr
 
 -->⚡ Energy Usage
 
-#### 📸 Dashboard Screenshots
-![1](C:\Users\flora\OneDrive\Pictures\Screenshots\Screenshot (158).png)
+## 📸 Dashboard Screenshots
+![1](screenshots/dashboard1.png)
+
+-----------------------------------------------------------------------------------------------------------------------------------
+![2](screenshots/dashboard2.png)
+
+-----------------------------------------------------------------------------------------------------------------------------------
+![3](screenshots/dashboard3.png)
+
+-----------------------------------------------------------------------------------------------------------------------------------
+![4](screenshots/dashboard4.png)
+
+-----------------------------------------------------------------------------------------------------------------------------------
 
 
 ## 🛠️ How to Run the Project Locally
