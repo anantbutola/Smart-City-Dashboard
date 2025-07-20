@@ -26,11 +26,13 @@ app.use(cors());
 app.use(limiter);
 app.use(express.json());
 
-const TOMTOM_API_KEY = 'csbBP06GHADBVaExogDMbv9XW9PbE8l4';
-const AIRVISUAL_API_KEY = '8f125439-1c27-4de9-9a7b-34e2a30e3f02';
+//Traffic API
+const TOMTOM_API_KEY = '';    //->Enter TOMTOM Traffic API here
+// AirPOllution API
+const AIRVISUAL_API_KEY = '';   //->Enter AirVisual API here
 
 // Ambee Natural Disaster Alerts Proxy
-const AMBEE_API_KEY = '2c78ab6646b63ac2e6069a3e71bc7f8f69bd00840e2840d6be72d03f77801a1f'; // <-- Replace with your real key
+const AMBEE_API_KEY = ''; // <-- //->Enter AMBEE API here
 
 // Add routes
 app.use('/api/weather', weatherRoutes);
