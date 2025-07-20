@@ -233,3 +233,11 @@ OpenWeatherMap API key is valid.
 ```
 ###### **Now everything is workng well ,now go to (index.html) go to dashboard signup or login and use the dashboard.....**
 --------------------------------------------------------------------------------------------------------------------------------------
+
+## 📬 Contact
+
+If you have any questions, feedback, or collaboration ideas, feel free to reach out:
+
+- 🔗 **LinkedIn**: [Anant Butola]([https://www.linkedin.com/in/anantbutola](https://www.linkedin.com/in/anant-butola-b63174370?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app))
+- 📧 **Email**: [Anant](anantbutola8@gmail.com)
+
