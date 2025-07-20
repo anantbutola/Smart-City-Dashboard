@@ -76,3 +76,6 @@ Done! You can now use TomTom services in your app.
 
 #### (3). [OpenWeatherMap API Key](https://home.openweathermap.org/api_keys )
       --> Done Same Thing for it and generate api key 🗝
+#### (4). Add Required API's as above.........
+
+
