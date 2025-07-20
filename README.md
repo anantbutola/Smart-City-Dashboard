@@ -238,6 +238,6 @@ OpenWeatherMap API key is valid.
 
 If you have any questions, feedback, or collaboration ideas, feel free to reach out:
 
-- 🔗 **LinkedIn**: [Anant Butola]([https://www.linkedin.com/in/anantbutola](https://www.linkedin.com/in/anant-butola-b63174370?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app))
+- 🔗 **LinkedIn**: [Anant Butola](https://www.linkedin.com/in/anant-butola-b63174370)
 - 📧 **Email**: [Anant](anantbutola8@gmail.com)
 
