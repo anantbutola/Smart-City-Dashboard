@@ -4,9 +4,10 @@ A full-stack Smart City Dashboard web application that visualizes and monitors k
 
 ## 🚀 Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (used for user data and authentication)
+- 🧑‍💻 **Frontend**: HTML, CSS, JavaScript  
+- 🧰 **Backend**: Node.js, Express.js  
+- 🛢️ **Database**: MongoDB (for user authentication and data storage)  
+- 🌐 **APIs Used**: TomTom, IQAir (AirVisual), OpenWeatherMap
 
 ## 📸 Features
 
@@ -51,13 +52,13 @@ cd SmartCityDashboard
 
 5. Open the folder using your code editor or terminal
 ```
-### 2. API KEYS
+### 2. 🔐 API Keys
 To enable features like weather updates, pollution data, or any other third-party services, you'll need to obtain and add the required API keys.
 _📋 Steps:_
 #### (1). TomTom API Key
 **-Go to TomTom Developer Portal**
 
-      [Website of TOMTOM API](https://developer.tomtom.com)
+-[Get it HERE](https://developer.tomtom.com)
 **-Sign Up / Log In**
 
       → Use your email, Google, or GitHub account.
@@ -71,15 +72,17 @@ _📋 Steps:_
       -Click "Copy" to save it for use.
 **-Use the API Key in Your Code**
 Done! You can now use TomTom services in your app.
-#### (2). [AIRVisual API Key](https://www.iqair.com/world-air-quality-api)
+#### (2). AIRVisual API Key
+-[Get It Here](https://www.iqair.com/world-air-quality-api)
        --> Done Same Thing for it and generate api key 🗝 
 
-#### (3). [OpenWeatherMap API Key](https://home.openweathermap.org/api_keys )
+#### (3). [OpenWeatherMap API Key]
+-[Get it here](https://home.openweathermap.org/api_keys )
       --> Done Same Thing for it and generate api key 🗝
 #### (4). Add Required API's as above.........
 
 
-### 3. MongoDB Configuration
+### 3. 🍃MongoDB Configuration
 
 
 This project uses MongoDB as its database. Follow these steps to set up MongoDB:
@@ -129,9 +132,9 @@ This project uses MongoDB as its database. Follow these steps to set up MongoDB:
 - Make sure MongoDB is running before starting the server.
 - Update the MongoDB URI as needed for your environment.
 
-### 4. Node.js And Express.js
+### 4. ⚙️ Node.js And Express.js
 ```
-**Why Use Node.js and Express.js?**
+**❓ Why Use Node.js and Express.js?**
     -->Why Node.js?
 -Node.js is a JavaScript runtime that lets you run JavaScript code on the server (outside the browser).
 -It’s fast, efficient, and great for building scalable network applications.
@@ -142,7 +145,7 @@ This project uses MongoDB as its database. Follow these steps to set up MongoDB:
 -In your project, Express.js is used to define API endpoints (like /api/auth, /api/weather, etc.) and handle HTTP requests.
 ```
 --------------------------------------------------------------------------------------------------------------------------------------
-**INSTALLATION PROCESS**
+**🔌 INSTALLATION PROCESS**
 1. Install Node.js
 -Download and install Node.js from the official website.
 -After installation, check the version in your terminal:
@@ -170,7 +173,7 @@ npm init -y
 --------------------------------------------------------------------------------------------------------------------------------------
 #### How to Use Node.js and Express.js in This Project 
 -The backend code (in pollution-proxy/) uses Node.js to run the server and Express.js to define API routes.
--Start the server with:
+-▶️ Start the server with:
 ```
   node index.js
 ```
@@ -188,7 +191,7 @@ npm init -y
 ```
 F:\Smartcity2\smart-city_dashboard\pollution-proxy> node index.js
 ```
-In Teminal:(After start backend server,this will be shown in terminal).
+▶️ In Teminal:(After start backend server,this will be shown in terminal).
 ```
 Server running at http://localhost:3002
 Routes registered:
